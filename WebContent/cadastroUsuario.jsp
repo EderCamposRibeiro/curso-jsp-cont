@@ -1,143 +1,206 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link rel="stylesheet" href="resources/css/cadastro.css" />
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-		<title>Cadastro de Usuário</title>
-	</head>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Cadastro de usuário</title>
+	<link rel="stylesheet" href="resources/css/cadastro.css">
+	<!-- Adicionando JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
 <body>
-	<!-- Tela de Manipulação da Tabela usuario do BD -->
 	<a href="acessoliberado.jsp">Início</a>
+	<br>
 	<a href="index.jsp">Sair</a>
-	<center>
-		<h1>Cadastro de Usuário</h1>
-		<h3 style="color:orange">${msg}</h3>
-	</center>
-	<form action="salvarUsuario" method="post" id="formUser" 
-	   onsubmit="return validarCampos()? true : false;" enctype="multipart/form-data" >
+	<h1 align="center">Cadastro de usuário</h1>
+	
+	<form action="salvarUsuario" method="post" id="formUser" onsubmit="return validarCampos()? true : false;">
 		<ul class="form-style-1">
 			<li>
 				<table>
 					<tr>
-						<td>ID:</td>
-						<td><input type="text" readonly="readonly" id="id" name="id" value="${user.id}" /></td>
-						<td>CEP:</td>
-						<td><input type="text" id="cep" name="cep" value="" onblur="consultarCep()" value="${user.cep}" /></td>
+						<td>Codigo:</td>
+						<td><input type="text" readonly="readonly" id="id" name="id" value="${user.id}"
+								class="field-long"></td>
+						<td>Cep:</td>
+						<td><input type="text" id="cep" name="cep" onblur="consultaCep();" value="${user.cep}" placeholder="Digite o Cep"></td>
 					</tr>
 					<tr>
 						<td>Login:</td>
-						<td><input type="text" id="login" name="login" value="${user.login}" /></td>
+						<td><input type="text" id="login" name="login" value="${user.login}" placeholder="Nome para Login"></td>
 						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua" value="${user.rua}" /></td>
+						<td><input type="text" id="rua" name="rua" value="${user.rua}" placeholder="Rua ou conjunto"></td>						
 					</tr>
 					<tr>
 						<td>Senha:</td>
-						<td><input type="password" id="senha" name="senha" value="${user.senha}" /></td>
+						<td><input type="password" id="senha" name="senha" value="${user.senha}" placeholder="Crie aqui a senha"></td>
 						<td>Bairro:</td>
-						<td><input type="text" id="bairro" name="bairro" value="${user.bairro}" /></td>
+						<td><input type="text" id="bairro" name="bairro" value="${user.bairro}" placeholder="Bairro/Região administrativa no (DF)"></td>						
 					</tr>
 					<tr>
 						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome" value="${user.nome}" placeholder ="Informe o nome"/></td>
+						<td><input type="text" id="nome" name="nome" value="${user.nome}" placeholder="Informe o nome do usuário"></td>
 						<td>Cidade:</td>
-						<td><input type="text" id="cidade" name="cidade" value="${user.cidade}" /></td>
+						<td><input type="text" id="cidade" name="cidade" value="${user.cidade}" placeholder="Digite a cidade"></td>						
 					</tr>
 					<tr>
-						<td>Telefone:</td>
-						<td><input type="text" id="telefone" name="telefone" value="${user.telefone}" /></td>
+						<td>Fone:</td>
+						<td><input type="text" id="telefone" name="telefone" value="${user.telefone}" placeholder="(00)0 0000 0000"></td>
 						<td>Estado:</td>
-						<td><input type="text" id="estado" name="estado" value="${user.estado}" /></td>
+						<td><input type="text" id="estado" name="estado" value="${user.estado}" placeholder="Digite a UF"></td>						
 					</tr>
 					<tr>
 						<td>IBGE:</td>
-						<td><input type="text" id="ibge" name="ibge" value="${user.ibge}" /></td>
+						<td><input type="text" id="ibge" name="ibge" value="${user.ibge}" placeholder="Numero de registro no IBGE"></td>
+						<td>Foto:</td>
+						<td><input type="file" name="foto" value="Foto" > </td>	
+											
 					</tr>
-
 					<tr>
-						<td>
-						   Foto:	
-						</td>
-						<td><input type="file" name="foto" value="Foto" > </td>
 					</tr>
-					
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar" />  <input type="submit" value="Cancelar" onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'" /></td>
+						<td><input type="submit" value="Salvar"> <input type="submit" value="Cancelar"
+								onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
 					</tr>
-					
 				</table>
+
 			</li>
 		</ul>
 	</form>
+
+	<h3 align="center" style="color: red;">${msg}</h3>
+		
 	<div class="container">
 		<table class="responsive-table">
-			<caption>Usuários Cadastrados</caption>
-			<tr>
-				<th>Id</th>
-				<th>Foto</th>
-				<th>Nome</th>
-				<th>Delete</th>
-				<th>Update</th>
-				<th>Telefone</th>
-			</tr>
-			<c:forEach items="${usuarios}" var="user">
+			<caption>Usuários cadastrados</caption>
+			<thead>
 				<tr>
-					<td><c:out value="${user.id}" /></td>
-					<td><a href="salvarUsuario?acao=download&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}"/>' alt="Imagem User" title="Imagem User" width="32px" height="32px" /> </a></td>
-					<td><c:out value="${user.nome}" /></td>
-					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img src="resources/img/icon.png" alt="Excluir" title="Excluir" width="32px" height="32px" /></a></td>
-					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img src="resources/img/editar.png" alt="Editar" title="Editar" /></a></td>
-					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img src="resources/img/telefone.png" alt="Telefones" title="Telefones" width="32px" height="32px" /></a></td>
+					<th scope="col">Id Usuário</th>
+					<th scope="col">Login</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Telefone</th>
+					<th scope="col">Cep</th>
+					<th scope="col">Rua</th>
+					<th scope="col">Bairro</th>
+					<th scope="col">Cidade</th>
+					<th scope="col">UF</th>
+					<th scope="col">IBGE</th>
+					<th scope="col">Excluir</th>
+					<th scope="col">Editar</th>
+					<th scope="col">Telefones</th>
+
 				</tr>
-			</c:forEach>
+			</thead>
+
+			<tbody>
+				<c:forEach items="${usuarios}" var="user">
+					<tr>
+						<th scope="row">
+							<c:out value="${user.id}"></c:out>
+						</th>
+						<td data-title="Login">
+							<c:out value="${user.login}"></c:out>
+						</td>
+						<!--  <td data-title="Senha"><c:out value="${user.senha}"></c:out></td>-->
+						<td data-title="Nome">
+							<c:out value="${user.nome}"></c:out>
+						</td>
+						<td data-title="Telefone">
+							<c:out value="${user.telefone}"></c:out>
+						</td>
+						<td data-title="Cep">
+							<c:out value="${user.cep}"></c:out>
+						</td>
+						<td data-title="Rua">
+							<c:out value="${user.rua}"></c:out>
+						</td>
+						<td data-title="Bairro">
+							<c:out value="${user.bairro}"></c:out>
+						</td>
+						<td data-title="Cidade">
+							<c:out value="${user.cidade}"></c:out>
+						</td>
+						<td data-title="Estado">
+							<c:out value="${user.estado}"></c:out>
+						</td>
+						<td data-title="IBGE">
+							<c:out value="${user.ibge}"></c:out>
+						</td>						
+						<td data-title="Excluir"><a href="salvarUsuario?acao=delete&user=${user.id}"> <img
+									src="resources/img/excluir.png" width="20px" height="20px" title="Excluir"
+									alt="Excluir">
+							</a></td>
+						<td data-title="Editar"><a href="salvarUsuario?acao=editar&user=${user.id}"> <img
+									src="resources/img/editar.png" width="20px" height="20px" title="Editar"
+									alt="Editar">
+							</a></td>
+						<td data-title="Telefones"><a href="salvarTelefones?acao=addFone&user=${user.id}"> <img
+									src="resources/img/telefone.png" width="20px" height="20px" title="Telefones"
+									alt="Telefones">
+							</a></td>									
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 	<script type="text/javascript">
 		function validarCampos() {
-			if(document.getElementById("login").value == '') {
-				alert("Informe o Login!");
+			if (document.getElementById("login").value == '') {
+				alert('Informe o Login')
 				return false;
-			} else if(document.getElementById("senha").value == '') {
-				alert("Informe a Senha!");
+			} else if (document.getElementById("senha").value == '') {
+				alert('Informe A Senha')
 				return false;
-			} else if(document.getElementById("nome").value == '') {
-				alert("Informe o Nome!");
+			} else if (document.getElementById("nome").value == '') {
+				alert('Informe o Nome')
 				return false;
-			} else if(document.getElementById("telefone").value == '') {
-				alert("Informe o Telefone!");
+			} else if (document.getElementById("telefone").value == '') {
+				alert('Informe o Telefone')
+				return false;
+			} else if (document.getElementById("cep").value == '') {
+				alert('Informe o Cep')
 				return false;
 			}
 			return true;
 		}
-		
-		function consultarCep() {
-			var cep = $("#cep").val();
-			
-			$.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
-                if (!("erro" in dados)) {
-                    $("#rua").val(dados.logradouro);
-                    $("#bairro").val(dados.bairro);
-                    $("#cidade").val(dados.localidade);
-                    $("#estado").val(dados.uf);
-                    $("#ibge").val(dados.ibge);
-                } else {
-                	$("#cep").val('');
-                	$("#rua").val('');
-                    $("#bairro").val('');
-                    $("#cidade").val('');
-                    $("#estado").val('');
-                    $("#ibge").val('');
-                    alert("CEP não encontrado.");
-                }
-            });
+		function consultaCep() {
+			var cep = $("#cep").val();
+
+			//Consulta o webservice viacep.com.br/
+			$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+				if (!("erro" in dados)) {
+					$("#rua").val(dados.logradouro);
+					$("#bairro").val(dados.bairro);
+					$("#cidade").val(dados.localidade);
+					$("#estado").val(dados.uf);
+					$("#ibge").val(dados.ibge);
+				} //end if.
+				else {
+					limpa_formulário_cep()
+					alert("CEP não encontrado.");
+				}
+			});
+
+		}
+		function limpa_formulário_cep() {
+			// Limpa valores do formulário de cep.
+			$("#cep").val("");
+			$("#rua").val("");
+			$("#bairro").val("");
+			$("#cidade").val("");
+			$("#estado").val("");
+			$("#ibge").val("");
 		}
 	</script>
+
 </body>
+
 </html>

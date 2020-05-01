@@ -1,18 +1,25 @@
-<jsp:useBean id="calcula" class="beans.BeanCursoJsp" type="beans.BeanCursoJsp" scope="page" />
+<jsp:useBean id="calcula" class="beans.BeanCursoJsp"
+	type="beans.BeanCursoJsp" scope="page" />
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd" />
+	pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
-	<!-- Tela de Boas Vindas ao Sistema -->
-	<!-- Link de Acesso Para Painel de Controle de Usuários -->
-	<jsp:setProperty property="*" name="calcula"/>
-	<h1>Acesso Liberado ao Sistema!</h1>
-	<a href="salvarUsuario?acao=listartodos"><img src="resources/img/login.png" width="250px" height="120px" /></a>
-	<a href="salvarProduto?acao=listartodos"><img src="resources/img/produto.png" /></a>
+	<jsp:setProperty property="*" name="calcula" />
+	<h3>Seja bem vindo ao sistema em JSP!</h3>
+
+	<a href="salvarUsuario?acao=listartodos"> <img
+		src="resources/img/cadastro.png" width="100px" height="100px"
+		title="Cadastrar/Alterar usuário" alt="Cadastrar/Alterar usuário">
+	</a>
+	<a href="salvarProduto?acao=listartodos"> <img
+		src="resources/img/produtos.png" width="100px" height="100px"
+		title="Cadastrar/Alterar produto" alt="Cadastrar/Alterar produto">
+	</a>
+
+
 </body>
 </html>
