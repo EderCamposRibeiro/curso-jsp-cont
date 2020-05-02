@@ -119,8 +119,8 @@
 						<th scope="row"><c:out value="${user.id}"></c:out></th>
 						<td data-title="Login"><c:out value="${user.login}"></c:out>
 						</td>
-						<td data-title="Foto"><img
-								src='<c:out value="${user.tempFotoUser}"/>' alt="Imagem User" title="Imagem User" width="20px" height="20px">
+						<td data-title="Foto"> <a href="salvarUsuario?acao=download&user=${user.id}">
+						<img src='<c:out value="${user.tempFotoUser}"/>' alt="Imagem User" title="Imagem User" width="20px" height="20px"></a>
 						</td>
 						<!--  <td data-title="Senha"><c:out value="${user.senha}"></c:out></td>-->
 						<td data-title="Nome"><c:out value="${user.nome}"></c:out></td>
