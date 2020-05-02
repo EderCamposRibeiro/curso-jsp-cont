@@ -77,6 +77,13 @@
 
 					</tr>
 					<tr>
+						<td></td>
+						<td></td>
+						<td>Curriculo:</td>
+						<td><input type="file" name="curriculo" value="curriculo"></td>
+
+					</tr>					
+					<tr>
 					</tr>
 					<tr>
 						<td></td>
@@ -100,6 +107,7 @@
 					<th scope="col">Id Usuário</th>
 					<th scope="col">Login</th>
 					<th scope="col">Foto</th>
+					<th scope="col">Curriculo</th>
 					<th scope="col">Nome</th>
 					<th scope="col">Cep</th>
 					<th scope="col">Rua</th>
@@ -119,9 +127,12 @@
 						<th scope="row"><c:out value="${user.id}"></c:out></th>
 						<td data-title="Login"><c:out value="${user.login}"></c:out>
 						</td>
-						<td data-title="Foto"> <a href="salvarUsuario?acao=download&user=${user.id}">
+						<td data-title="Foto"> <a href="salvarUsuario?acao=download&tipo=imagen&user=${user.id}">
 						<img src='<c:out value="${user.tempFotoUser}"/>' alt="Imagem User" title="Imagem User" width="20px" height="20px"></a>
 						</td>
+						<td data-title="Curriculo"> <a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}">
+						Curriculo</a>
+						</td>						
 						<!--  <td data-title="Senha"><c:out value="${user.senha}"></c:out></td>-->
 						<td data-title="Nome"><c:out value="${user.nome}"></c:out></td>
 						<!-- <td data-title="Telefone"><c:out value="${user.telefone}"></c:out>

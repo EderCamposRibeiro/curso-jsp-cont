@@ -32,7 +32,10 @@ public class DaoUsuario {
 	 */
 	public void salvar(BeanCursoJsp usuario) {
 		try {
-			String sql = "INSERT INTO usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contenttype) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO usuario(login, senha, nome, telefone, cep,"
+					+ " rua, bairro, cidade, estado, ibge,"
+					+ " fotobase64, contenttype, curriculobase64, contenttypecurriculo ) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
@@ -46,6 +49,8 @@ public class DaoUsuario {
 			insert.setString(10, usuario.getIbge());
 			insert.setString(11, usuario.getFotoBase64());
 			insert.setString(12, usuario.getContentType());
+			insert.setString(13, usuario.getCurriculoBase64());
+			insert.setString(14, usuario.getContentTypeCurriculo());			
 			insert.execute();
 			connection.commit();
 		} catch(Exception e) {
@@ -82,6 +87,8 @@ public class DaoUsuario {
 				beanCursoJsp.setIbge(resultSet.getString("ibge"));
 				beanCursoJsp.setContentType(resultSet.getString("contenttype"));
 				beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));
+				beanCursoJsp.setCurriculoBase64(resultSet.getString("curriculobase64"));
+				beanCursoJsp.setContentTypeCurriculo(resultSet.getString("contenttypecurriculo"));
 				listar.add(beanCursoJsp);
 			}
 			return listar;
@@ -134,9 +141,11 @@ public class DaoUsuario {
 				beanCursoJsp.setIbge(resultSet.getString("ibge"));
 				beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));
 				beanCursoJsp.setContentType(resultSet.getString("contenttype"));
+				beanCursoJsp.setCurriculoBase64(resultSet.getString("curriculobase64"));
+				beanCursoJsp.setContentTypeCurriculo(resultSet.getString("contenttypecurriculo"));
 				return beanCursoJsp;
 			}
-		return null; /*fotobase64, contenttype*/
+		return null; 
 	}
 	
 	/*
