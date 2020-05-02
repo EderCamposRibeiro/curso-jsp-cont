@@ -12,11 +12,11 @@
 	<h3>Seja bem vindo ao sistema em JSP!</h3>
 
 	<a href="salvarUsuario?acao=listartodos"> <img
-		src="resources/img/cadastro.png" width="100px" height="100px"
+		src="resources/img/login.png" width="100px" height="100px"
 		title="Cadastrar/Alterar usuário" alt="Cadastrar/Alterar usuário">
 	</a>
 	<a href="salvarProduto?acao=listartodos"> <img
-		src="resources/img/produtos.png" width="100px" height="100px"
+		src="resources/img/produto.png" width="100px" height="100px"
 		title="Cadastrar/Alterar produto" alt="Cadastrar/Alterar produto">
 	</a>
 

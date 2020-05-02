@@ -76,7 +76,7 @@
 					<td data-title="Quantidade"><c:out value="${product.quantidade}"></c:out></td>
 					<td data-title="Valor"><c:out value="${product.valor}"></c:out></td>			
 					<td data-title="Excluir"><a href="salvarProduto?acao=delete&product=${product.id}">
-						<img src="resources/img/excluir.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
+						<img src="resources/img/icon.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
 					</td>
 					<td data-title="Editar"><a href="salvarProduto?acao=editar&product=${product.id}">
 						<img src="resources/img/editar.png" width="20px" height="20px" title="Editar" alt="Editar"></a>
