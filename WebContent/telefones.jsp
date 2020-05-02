@@ -66,7 +66,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${telefones}" var="fone">
+				<c:forEach items="${telefone}" var="fone">
 					<tr>
 						<th scope="row">
 							<c:out value="${fone.id}"></c:out>
@@ -77,8 +77,8 @@
 						<td data-title="Tipo">
 							<c:out value="${fone.tipo}"></c:out>
 						</td>
-						<td data-title="Excluir"><a href="salvarTelefones?acao=deleteFone&foneId=${fone.id}"> <img
-									src="resources/img/excluir.png" width="20px" height="20px" title="Excluir"
+						<td data-title="Excluir"><a href="salvarTelefones?acao=deletefone&foneId=${fone.id}"> <img
+									src="resources/img/icon.png" width="20px" height="20px" title="Excluir"
 									alt="Excluir">
 							</a></td>
 					</tr>
