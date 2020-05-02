@@ -19,7 +19,7 @@
 	<a href="index.jsp">Sair</a>
 	<h1 align="center">Cadastro de usuário</h1>
 	
-	<form action="salvarUsuario" method="post" id="formUser" onsubmit="return validarCampos()? true : false;">
+	<form action="salvarUsuario" method="post" id="formUser" onsubmit="return validarCampos()? true : false;" enctype="multipart/form-data">
 		<ul class="form-style-1">
 			<li>
 				<table>
