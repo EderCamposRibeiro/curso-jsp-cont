@@ -31,47 +31,46 @@
 						<td><input type="text" readonly="readonly" id="id" name="id"
 							value="${user.id}" class="field-long"></td>
 						<td>Cep:</td>
-						<td><input type="text" id="cep" name="cep"
+						<td><input type="text" id="cep" name="cep" maxlength="9"
 							onblur="consultaCep();" value="${user.cep}"
 							placeholder="Digite o Cep"></td>
 					</tr>
 					<tr>
 						<td>Login:</td>
-						<td><input type="text" id="login" name="login"
+						<td><input type="text" id="login" name="login" maxlength="10"
 							value="${user.login}" placeholder="Nome para Login"></td>
 						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua"
+						<td><input type="text" id="rua" name="rua" maxlength="50"
 							value="${user.rua}" placeholder="Rua ou conjunto"></td>
 					</tr>
 					<tr>
 						<td>Senha:</td>
-						<td><input type="password" id="senha" name="senha"
+						<td><input type="password" id="senha" name="senha" maxlength="10"
 							value="${user.senha}" placeholder="Crie aqui a senha"></td>
 						<td>Bairro:</td>
-						<td><input type="text" id="bairro" name="bairro"
+						<td><input type="text" id="bairro" name="bairro" maxlength="50"
 							value="${user.bairro}"
 							placeholder="Bairro/Região administrativa no (DF)"></td>
 					</tr>
 					<tr>
 						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome"
+						<td><input type="text" id="nome" name="nome" maxlength="50"
 							value="${user.nome}" placeholder="Informe o nome do usuário"></td>
 						<td>Cidade:</td>
-						<td><input type="text" id="cidade" name="cidade"
+						<td><input type="text" id="cidade" name="cidade" maxlength="50"
 							value="${user.cidade}" placeholder="Digite a cidade"></td>
 					</tr>
 					<tr>
-						<td>Fone:</td>
-						<td><input type="text" id="telefone" name="telefone"
-							value="${user.telefone}" placeholder="(00)0 0000 0000"></td>
+						<td>IBGE:</td>
+						<td><input type="text" id="ibge" name="ibge" maxlength="20"
+							value="${user.ibge}" placeholder="Numero de registro no IBGE"></td>
 						<td>Estado:</td>
-						<td><input type="text" id="estado" name="estado"
+						<td><input type="text" id="estado" name="estado" maxlength="30"
 							value="${user.estado}" placeholder="Digite a UF"></td>
 					</tr>
 					<tr>
-						<td>IBGE:</td>
-						<td><input type="text" id="ibge" name="ibge"
-							value="${user.ibge}" placeholder="Numero de registro no IBGE"></td>
+						<td></td>
+						<td></td>
 						<td>Foto:</td>
 						<td><input type="file" name="foto"/>
 						<input style="display: none;"  type="text" name="fotoTemp" readonly="readonly" value="${user.fotoBase64}"/>
