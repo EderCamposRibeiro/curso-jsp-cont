@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,10 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.tomcat.util.buf.UDecoder;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import beans.BeanCursoJsp;
@@ -157,22 +153,28 @@ public class Usuario extends HttpServlet {
 
 						Part imagemFoto = request.getPart("foto");
 						
-						if (imagemFoto != null) {
+						if (imagemFoto != null && imagemFoto.getInputStream().available() > 0) {
 							String fotoBase64 = new Base64()
 									.encodeBase64String(converteStremParabyte(imagemFoto.getInputStream()));
 							usuario.setFotoBase64(fotoBase64);
 							usuario.setContentType(imagemFoto.getContentType());
+						} else {
+							usuario.setFotoBase64(request.getParameter("fotoTemp"));
+							usuario.setContentType(request.getParameter("contetTypeTemp"));
 						}
 						
 					/*Processa PDF*/
 						
 						Part curriculoPdf = request.getPart("curriculo");
 						
-						if (curriculoPdf != null) {
+						if (curriculoPdf != null && curriculoPdf.getInputStream().available() > 0) {
 							String curriculoBase64 = new Base64()
 									.encodeBase64String(converteStremParabyte(curriculoPdf.getInputStream()));
 							usuario.setCurriculoBase64(curriculoBase64);
 							usuario.setContentTypeCurriculo(curriculoPdf.getContentType());
+						} else {
+							usuario.setCurriculoBase64(request.getParameter("fotoTempPDF"));
+							usuario.setContentTypeCurriculo(request.getParameter("contentTypeTempPDF"));
 						}
 					
 					}
@@ -219,7 +221,7 @@ public class Usuario extends HttpServlet {
 						
 						RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 						request.setAttribute("usuarios", daoUsuario.listar());
-						request.setAttribute("msg", "Salvo Com Sucesso!");
+						//request.setAttribute("msg", "Salvo Com Sucesso!");
 						view.forward(request, response);
 					} catch(Exception e) {
 						e.printStackTrace();

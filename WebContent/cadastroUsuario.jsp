@@ -5,13 +5,13 @@
 <html>
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Cadastro de usuário</title>
-<link rel="stylesheet" href="resources/css/cadastro.css">
-<!-- Adicionando JQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-	crossorigin="anonymous"></script>
+	<meta charset="ISO-8859-1">
+		<title>Cadastro de usuário</title>
+		<link rel="stylesheet" href="resources/css/cadastro.css">
+		<!-- Adicionando JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -73,14 +73,22 @@
 						<td><input type="text" id="ibge" name="ibge"
 							value="${user.ibge}" placeholder="Numero de registro no IBGE"></td>
 						<td>Foto:</td>
-						<td><input type="file" name="foto" value="Foto"></td>
+						<td><input type="file" name="foto"/>
+						<input style="display: none;"  type="text" name="fotoTemp" readonly="readonly" value="${user.fotoBase64}"/>
+						<input style="display: none;"  type="text" name="contetTypeTemp" readonly="readonly" value="${user.contentType}"/>
+						</td>
 
 					</tr>
 					<tr>
 						<td></td>
 						<td></td>
-						<td>Curriculo:</td>
-						<td><input type="file" name="curriculo" value="curriculo"></td>
+						<td>
+						   Curriculo:	
+						</td>
+						<td><input type="file" name="curriculo" value="curriculo" >
+						<input type="text" style="display: none;" name="fotoTempPDF" readonly="readonly" value="${user.curriculoBase64}"/>
+						<input type="text" style="display: none;" name="contetTypeTempPDF" readonly="readonly" value="${user.contentTypeCurriculo}"/>
+						 </td>
 
 					</tr>					
 					<tr>
@@ -127,25 +135,26 @@
 						<th scope="row"><c:out value="${user.id}"></c:out></th>
 						<td data-title="Login"><c:out value="${user.login}"></c:out>
 						</td>
-						<c:if test="${user.fotoBase64.isEmpty() == true || user.fotoBase64 == null }">
-						<td data-title="Foto"><img alt="Imagem User" src="resources/img/userpadrao.png" width="32px" height="32px" onclick="alert('Não possui Imagem')" title="Sem Foto" alt="Sem Foto">
-						</td>
-						</c:if>
-						<c:if test="${user.fotoBase64.isEmpty() == false || user.fotoBase64 != null}">
+						<c:if test="${user.fotoBase64.isEmpty() == false}">
 							<td data-title="Foto"> <a href="salvarUsuario?acao=download&tipo=imagen&user=${user.id}">
 						<img src='<c:out value="${user.tempFotoUser}"/>' alt="Imagem User" title="Imagem User" width="32px" height="32px"></a>
 						</td>
 						</c:if>
-						<c:if test="${user.curriculoBase64.isEmpty() == true || user.curriculoBase64 == null}">
-						<td data-title="Curriculo"> 
-							<img title="Sem currículo" alt="Sem currículo" src="resources/img/nopdf.jpg" width="32px" height="32px" onclick="alert('Não possui PDF')" > 
+						<c:if test="${user.fotoBase64.isEmpty() == true}">
+							<td data-title="Foto"><img alt="Imagem User" src="resources/img/userpadrao.png" width="32px" height="32px" onclick="alert('Não possui Imagem')" title="Sem Foto" alt="Sem Foto">
 						</td>
-						</c:if>							
-						<c:if test="${user.curriculoBase64.isEmpty() == false || user.curriculoBase64 != null}">
+						</c:if>
+						<c:if test="${user.curriculoBase64.isEmpty() == false}">
 						<td data-title="Currículo"> <a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}">
 							<img alt="Currículo" title="Currículo" src="resources/img/pdf.png" width="32px" height="32px"> </a>
 						</td>
 						</c:if>	
+						<c:if test="${user.curriculoBase64.isEmpty() == true}">
+						<td data-title="Curriculo"> 
+							<img title="Sem currículo" alt="Sem currículo" src="resources/img/nopdf.png" width="32px" height="32px" onclick="alert('Não possui PDF')" > 
+						</td>
+						</c:if>							
+
 						
 											
 						<!--  <td data-title="Senha"><c:out value="${user.senha}"></c:out></td>-->

@@ -23,7 +23,7 @@ public class BeanCursoJsp {
 	private String contentTypeCurriculo;	
 	
 	private String tempFotoUser;
-	private String tempCurriculoUser;
+
 	
 	public String getTempFotoUser() {
 		
@@ -32,10 +32,6 @@ public class BeanCursoJsp {
 		return tempFotoUser;
 	}
 	
-public String getTempCurriculoUser() {
-	tempCurriculoUser = "data:" + contentTypeCurriculo + ";base64," + curriculoBase64;
-	return tempCurriculoUser;
-}
 	
 	
 	public void setFotoBase64(String fotoBase64) {
