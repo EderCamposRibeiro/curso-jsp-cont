@@ -29,22 +29,25 @@
 					</tr>
 					<tr>
 						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome"
+						<td><input type="text" id="nome" name="nome" maxlength="100"
 							value="${product.nome}" placeholder="Digite o nome do produto"></td>
 					</tr>
 					<tr>
 						<td>Quantidade:</td>
-						<td><input type="text" id="quantidade" name="quantidade"
+						<td><input type="number" id="quantidade" name="quantidade" maxlength="12"
 							value="${product.quantidade}" placeholder="Digite a quantidade"></td>
 					</tr>
 					<tr>
 						<td>Valor R$:</td>
-						<td><input type="text" id="valor" name="valor" 
+						<td><input type="number"  id="valor" name="valor" maxlength="12" pattern="[0-9]+([\,.][0-9]+)?" step="0.01"
+							title="Deve ser um número com até dois decimais."
 							value="${product.valor}" placeholder="Valor do produto em Reais"></td>
 					</tr>		
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar"> <input type="submit" value="Cancelar" onclick="document.getElementById('formProduct').action = 'salvarProduto?acao=reset'"></td>
+						<td><input type="submit" value="Salvar" style="width: 90px"> 
+						<input type="submit" value="Cancelar" onclick="document.getElementById('formProduct').action = 'salvarProduto?acao=reset'">
+						</td>
 					</tr>
 				</table>
 

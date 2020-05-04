@@ -26,7 +26,7 @@ public class ServletsProduto extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String acao = request.getParameter("acao");
-			String produto = request.getParameter("produto");
+			String produto = request.getParameter("product");
 
 			if (acao.equalsIgnoreCase("delete")) {
 				daoProduto.delete(produto);
@@ -40,7 +40,7 @@ public class ServletsProduto extends HttpServlet {
 
 				RequestDispatcher view = request
 						.getRequestDispatcher("/cadastroProduto.jsp");
-				request.setAttribute("produto", beanCursoJsp);
+				request.setAttribute("product", beanCursoJsp);
 				view.forward(request, response);
 			} else if (acao.equalsIgnoreCase("listartodos")) {
 
@@ -112,9 +112,11 @@ public class ServletsProduto extends HttpServlet {
 					produto.setQuantidade(Double.parseDouble(quantidade));
 				}
 
-				if (valor != null && !valor.isEmpty())
+				if (valor != null && !valor.isEmpty()) {
+					//String valorParse = valor.replaceAll("\\.", "");//10500,20
+					//valorParse = valorParse.replaceAll("\\,", ".");//10500.00
 					produto.setValor(Double.parseDouble(valor));
-
+				}
 				if (msg != null) {
 					request.setAttribute("msg", msg);
 				} else if (id == null || id.isEmpty()
