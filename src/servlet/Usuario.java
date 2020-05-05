@@ -45,22 +45,22 @@ public class Usuario extends HttpServlet {
 		try {
 			String acao = request.getParameter("acao");
 			String user = request.getParameter("user");
-				if(acao.equalsIgnoreCase("delete") && user != null) {
+				if(acao != null && acao.equalsIgnoreCase("delete") && user != null) {
 					daoUsuario.delete(user);
 					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 					request.setAttribute("usuarios", daoUsuario.listar());
 					view.forward(request, response);
-				} else if(acao.equalsIgnoreCase("editar")) {
+				} else if(acao != null && acao.equalsIgnoreCase("editar")) {
 					BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
 					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 					request.setAttribute("user", beanCursoJsp);
 					view.forward(request, response);
-				} else if(acao.equalsIgnoreCase("listartodos")) {
+				} else if(acao != null && acao.equalsIgnoreCase("listartodos")) {
 					daoUsuario.delete(user);
 					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 					request.setAttribute("usuarios", daoUsuario.listar());
 					view.forward(request, response);
-				} else if (acao.equalsIgnoreCase("download")){
+				} else if (acao != null && acao.equalsIgnoreCase("download")){
 					BeanCursoJsp usuario = daoUsuario.consultar(user);
 					if (usuario != null){
 						String conttentType = "";
@@ -98,6 +98,10 @@ public class Usuario extends HttpServlet {
 						os.close();
 						
 					}
+				} else {
+					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+					request.setAttribute("usuarios", daoUsuario.listar());
+					view.forward(request, response);
 				}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -193,9 +197,6 @@ public class Usuario extends HttpServlet {
 							podeInserir = false;
 						} else if(nome == null || nome.isEmpty()) {
 							msg = "Nome Deve Ser Informado!";
-							podeInserir = false;
-						} else if(telefone == null || telefone.isEmpty()) {
-							msg = "Telefone Deve Ser Informado!";
 							podeInserir = false;
 						} else if(id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
 							request.setAttribute("msg", "Este Login Pertence a Um Usuário!");

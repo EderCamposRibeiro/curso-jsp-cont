@@ -7,6 +7,8 @@
 <meta charset="ISO-8859-1">
 <title>Cadastro de produto</title>
 <link rel="stylesheet" href="resources/css/cadastro.css">
+  <script src="resources/javascript/jquery.min.js" type="text/javascript"></script>
+  <script src="resources/javascript/jquery.maskMoney.min.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -38,8 +40,9 @@
 							value="${product.quantidade}" placeholder="Digite a quantidade"></td>
 					</tr>
 					<tr>
+					
 						<td>Valor R$:</td>
-						<td><input type="number"  id="valor" name="valor" maxlength="12" pattern="[0-9]+([\,.][0-9]+)?" step="0.01"
+						<td><input type="text"  id="valor" name="valor" maxlength="20" data-precisio="2" 
 							title="Deve ser um número com até dois decimais."
 							value="${product.valor}" placeholder="Valor do produto em Reais"></td>
 					</tr>		
@@ -105,6 +108,10 @@
 			}
 			return true;
 		}
+		
+		  $(function() {
+			  $("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+			  })
 	</script>
 </body>
 </html>

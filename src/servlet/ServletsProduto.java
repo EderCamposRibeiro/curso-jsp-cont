@@ -37,7 +37,7 @@ public class ServletsProduto extends HttpServlet {
 			} else if (acao.equalsIgnoreCase("editar")) {
 
 				BeanProduto beanCursoJsp = daoProduto.consultar(produto);
-
+				
 				RequestDispatcher view = request
 						.getRequestDispatcher("/cadastroProduto.jsp");
 				request.setAttribute("product", beanCursoJsp);
@@ -113,9 +113,9 @@ public class ServletsProduto extends HttpServlet {
 				}
 
 				if (valor != null && !valor.isEmpty()) {
-					//String valorParse = valor.replaceAll("\\.", "");//10500,20
-					//valorParse = valorParse.replaceAll("\\,", ".");//10500.00
-					produto.setValor(Double.parseDouble(valor));
+					String valorParse = valor.replaceAll("\\.", "");//10500,20
+					valorParse = valorParse.replaceAll("\\,", ".");//10500.00
+					produto.setValor(Double.parseDouble(valorParse));
 				}
 				if (msg != null) {
 					request.setAttribute("msg", msg);
