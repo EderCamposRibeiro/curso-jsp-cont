@@ -189,7 +189,7 @@ public class Usuario extends HttpServlet {
 							
 							String miniaturaBase64 = "data:image/png;base64," + DatatypeConverter.printBase64Binary(baos.toByteArray());
 							
-							System.out.println(miniaturaBase64);						
+							usuario.setFotoBase64Miniatura(miniaturaBase64);						
 							
 							/*----------------Fim    miniatura imagem---------------------*/
 						} else {
