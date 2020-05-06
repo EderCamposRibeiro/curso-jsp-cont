@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>      
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@
 						<td>Valor R$:</td>
 						<td><input type="text"  id="valor" name="valor" maxlength="20" data-precisio="2" 
 							title="Deve ser um número com até dois decimais."
-							value="${product.valor}" placeholder="Valor do produto em Reais"></td>
+							value="${product.valorEmTexto}" placeholder="Valor do produto em Reais"></td>
 					</tr>		
 					<tr>
 						<td></td>
@@ -80,7 +81,7 @@
 					<th scope="row"><c:out value="${product.id}"></c:out></th>
 					<td data-title="Nome"><c:out value="${product.nome}"></c:out></td>
 					<td data-title="Quantidade"><c:out value="${product.quantidade}"></c:out></td>
-					<td data-title="Valor"><c:out value="${product.valor}"></c:out></td>			
+					<td data-title="Valor"><fmt:formatNumber type="number" maxFractionDigits="2" value="${product.valor}"/></td>
 					<td data-title="Excluir"><a href="salvarProduto?acao=delete&product=${product.id}">
 						<img src="resources/img/icon.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
 					</td>
