@@ -8,17 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:setProperty property="*" name="calcula" />
-	<h3>Seja bem vindo ao sistema em JSP!</h3>
+	
+	<div align="center" style="padding-top: 10%;" >	
+	<h3 >Seja bem vindo ao sistema em JSP!</h3>
 
-	<a href="salvarUsuario?acao=listartodos"> <img
-		src="resources/img/login.png" width="100px" height="100px"
-		title="Cadastrar/Alterar usuário" alt="Cadastrar/Alterar usuário">
-	</a>
-	<a href="salvarProduto?acao=listartodos"> <img
-		src="resources/img/produto.png" width="100px" height="100px"
-		title="Cadastrar/Alterar produto" alt="Cadastrar/Alterar produto">
-	</a>
+	<table>
+		<tr>
+			<td>	<a href="salvarUsuario?acao=listartodos"> <img src="resources/img/login.png" width="100px" height="100px"
+						title="Cadastrar/Alterar usuário" alt="Cadastrar/Alterar usuário"></a>
+			</td>
+			<td>	<a href="salvarProduto?acao=listartodos"> <img src="resources/img/produto.png" width="80px" height="80px"
+						title="Cadastrar/Alterar produto" alt="Cadastrar/Alterar produto"></a>
+			</td>
+		</tr>
+	</table>
+	</div>
 
 
 </body>

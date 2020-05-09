@@ -30,7 +30,7 @@ public class ServletsTelefone extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			String acao = request.getParameter("acao");
+			String acao = request.getParameter("acao") != null ? request.getParameter("acao") : "addFone";;
 			String user = request.getParameter("user");
 			BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
 

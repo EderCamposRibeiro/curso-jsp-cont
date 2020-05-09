@@ -13,9 +13,9 @@
 </head>
 <body>
 
-	<a href="acessoliberado.jsp">Início</a>
+	<a href="acessoliberado.jsp"><img src="resources/img/home.png" width="35px" height="35px" title="Voltar" alt="Voltar"></a>
 	<br>
-	<a href="index.jsp">Sair</a>
+	<a href="index.jsp"><img src="resources/img/icon.png" width="35px" height="35px" title="Sair" alt="Sair"></a>
 
 	<h1 align="center">Cadastro de produto</h1>
 

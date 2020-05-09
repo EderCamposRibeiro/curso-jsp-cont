@@ -11,6 +11,9 @@
 <body>
 	<!-- Tela de Login de Acesso Para o Sistema -->
 	<div class="login-page">
+		<center><h3>Projeto Didático</h3></center>
+		<center><h1>JSP + Servlet + JDBC</h1></center>
+		<center><span><b>USUÁRIO:</b> admin <br/> <b>SENHA:</b> admin</span></center><br/>
   		<div class="form">
 			<form action="LoginServlet" class="login-form">
 				Login:
@@ -22,6 +25,7 @@
 				<button type="submit" value="Logar">Logar</button>
 			</form>
 		</div>
+		<center><h3><a style="text-decoration: none;" href="https://www.jdevtreinamento.com.br/"/>Formação Java Web</h3></center>
 	</div>
 </body>
 </html>

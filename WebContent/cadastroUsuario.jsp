@@ -15,9 +15,9 @@
 </head>
 
 <body>
-	<a href="acessoliberado.jsp">Início</a>
+	<a href="acessoliberado.jsp"><img src="resources/img/home.png" width="35px" height="35px" title="Voltar" alt="Voltar"></a>
 	<br>
-	<a href="index.jsp">Sair</a>
+	<a href="index.jsp"><img src="resources/img/icon.png" width="35px" height="35px" title="Sair" alt="Sair"></a>
 	<h1 align="center">Cadastro de usuário</h1>
 
 	<form action="salvarUsuario" method="post" id="formUser"
@@ -135,7 +135,7 @@
 						<th scope="row"><c:out value="${user.id}"></c:out></th>
 						<td data-title="Login"><c:out value="${user.login}"></c:out>
 						</td>
-						<c:if test="${user.fotoBase64Miniatura.isEmpty() == false}">
+						<c:if test="${user.fotoBase64Miniatura.isEmpty() == false || user.fotoBase64Miniatura != null}">
 							<td data-title="Foto"> <a href="salvarUsuario?acao=download&tipo=imagen&user=${user.id}">
 						<img src='<c:out value="${user.fotoBase64Miniatura}"/>' alt="Imagem User" title="Imagem User" width="32px" height="32px"></a>
 						</td>
@@ -145,12 +145,12 @@
 							<img src="resources/img/userpadrao.png" width="32px" height="32px" onclick="alert('Não possui Imagem')" title="Sem Foto" alt="Sem Foto">
 						</td>
 						</c:if>
-						<c:if test="${user.curriculoBase64.isEmpty() == false}">
+						<c:if test="${user.curriculoBase64.isEmpty() == false }">
 						<td data-title="Currículo"> <a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}">
 							<img alt="Currículo" title="Currículo" src="resources/img/pdf.png" width="32px" height="32px"> </a>
 						</td>
 						</c:if>	
-						<c:if test="${user.curriculoBase64.isEmpty() == true}">
+						<c:if test="${user.curriculoBase64.isEmpty() == true }">
 						<td data-title="Curriculo"> 
 							<img title="Sem currículo" alt="Sem currículo" src="resources/img/nopdf.png" width="32px" height="32px" onclick="alert('Não possui PDF')"> 
 						</td>
