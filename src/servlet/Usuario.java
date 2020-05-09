@@ -232,7 +232,7 @@ public class Usuario extends HttpServlet {
 						} else if(nome == null || nome.isEmpty()) {
 							msg = "Nome Deve Ser Informado!";
 							podeInserir = false;
-						} else if(id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
+						} else if(!daoUsuario.validarLogin(login)) {
 							request.setAttribute("msg", "Este Login Pertence a Um Usuário!");
 							podeInserir = false;
 						} else if(id == null || id.isEmpty() && !daoUsuario.validarSenha(senha)) {

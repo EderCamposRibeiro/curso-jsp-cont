@@ -70,7 +70,7 @@ public class DaoUsuario {
 	 */
 	public List<BeanCursoJsp> listar() throws Exception {
 		List<BeanCursoJsp> listar = new ArrayList<BeanCursoJsp>();
-		String sql = "SELECT * FROM usuario";
+		String sql = "SELECT * FROM usuario WHERE login <> 'admin'";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()) {
@@ -104,7 +104,7 @@ public class DaoUsuario {
 	public void delete(String id) {
 		if (id != null && !id.isEmpty()) {
 			try {
-				String sql = "DELETE FROM usuario WHERE id = '"+ id +"'";
+				String sql = "DELETE FROM usuario WHERE id = '"+ id +"' AND login <> 'admin'";
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.execute();
 				connection.commit();
@@ -125,7 +125,7 @@ public class DaoUsuario {
 	 * @param String id = Atributo ID do Usuário
 	 */
 	public BeanCursoJsp consultar(String id) throws Exception {
-		String sql = "SELECT * FROM usuario WHERE id = '"+ id +"'";
+		String sql = "SELECT * FROM usuario WHERE id = '"+ id +"' AND login <> 'admin'";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		ResultSet resultSet = preparedStatement.executeQuery();
 			if(resultSet.next()) {
@@ -191,7 +191,7 @@ public class DaoUsuario {
 			String sql = "UPDATE usuario SET login = ?, senha = ?, nome = ?, telefone = ?, cep = ?,"
 					+ " rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ?, "
 					+ " fotobase64 = ?, contenttype = ?, curriculobase64 = ?,"
-					+ " contenttypecurriculo = ?, fotobase64miniatura = ? WHERE id = "+ usuario.getId();
+					+ " contenttypecurriculo = ?, fotobase64miniatura = ? WHERE id = "+ usuario.getId() + "AND login <> 'admin'";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, usuario.getLogin());
 			preparedStatement.setString(2, usuario.getSenha());
