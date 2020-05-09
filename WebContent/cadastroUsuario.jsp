@@ -135,13 +135,14 @@
 						<th scope="row"><c:out value="${user.id}"></c:out></th>
 						<td data-title="Login"><c:out value="${user.login}"></c:out>
 						</td>
-						<c:if test="${user.fotoBase64.isEmpty() == false}">
+						<c:if test="${user.fotoBase64Miniatura.isEmpty() == false}">
 							<td data-title="Foto"> <a href="salvarUsuario?acao=download&tipo=imagen&user=${user.id}">
-						<img src='<c:out value="${user.tempFotoUser}"/>' alt="Imagem User" title="Imagem User" width="32px" height="32px"></a>
+						<img src='<c:out value="${user.fotoBase64Miniatura}"/>' alt="Imagem User" title="Imagem User" width="32px" height="32px"></a>
 						</td>
 						</c:if>
-						<c:if test="${user.fotoBase64.isEmpty() == true}">
-							<td data-title="Foto"><img alt="Imagem User" src="resources/img/userpadrao.png" width="32px" height="32px" onclick="alert('Não possui Imagem')" title="Sem Foto" alt="Sem Foto">
+						<c:if test="${user.fotoBase64Miniatura.isEmpty() == true || user.fotoBase64Miniatura == null}">
+							<td data-title="Foto">
+							<img src="resources/img/userpadrao.png" width="32px" height="32px" onclick="alert('Não possui Imagem')" title="Sem Foto" alt="Sem Foto">
 						</td>
 						</c:if>
 						<c:if test="${user.curriculoBase64.isEmpty() == false}">
@@ -151,7 +152,7 @@
 						</c:if>	
 						<c:if test="${user.curriculoBase64.isEmpty() == true}">
 						<td data-title="Curriculo"> 
-							<img title="Sem currículo" alt="Sem currículo" src="resources/img/nopdf.png" width="32px" height="32px" onclick="alert('Não possui PDF')" > 
+							<img title="Sem currículo" alt="Sem currículo" src="resources/img/nopdf.png" width="32px" height="32px" onclick="alert('Não possui PDF')"> 
 						</td>
 						</c:if>							
 
