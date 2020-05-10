@@ -73,8 +73,6 @@
 						<td></td>
 						<td>Foto:</td>
 						<td><input type="file" name="foto"/>
-						<input style="display: none;"  type="text" name="fotoTemp" readonly="readonly" value="${user.fotoBase64}"/>
-						<input style="display: none;"  type="text" name="contetTypeTemp" readonly="readonly" value="${user.contentType}"/>
 						</td>
 
 					</tr>
@@ -85,8 +83,6 @@
 						   Curriculo:	
 						</td>
 						<td><input type="file" name="curriculo" value="curriculo" >
-						<input type="text" style="display: none;" name="fotoTempPDF" readonly="readonly" value="${user.curriculoBase64}"/>
-						<input type="text" style="display: none;" name="contetTypeTempPDF" readonly="readonly" value="${user.contentTypeCurriculo}"/>
 						 </td>
 
 					</tr>					
@@ -135,22 +131,22 @@
 						<th scope="row"><c:out value="${user.id}"></c:out></th>
 						<td data-title="Login"><c:out value="${user.login}"></c:out>
 						</td>
-						<c:if test="${user.fotoBase64Miniatura.isEmpty() == false || user.fotoBase64Miniatura != null}">
+						<c:if test="${user.fotoBase64Miniatura.isEmpty() == false || user.fotoBase64Miniatura != null }">
 							<td data-title="Foto"> <a href="salvarUsuario?acao=download&tipo=imagen&user=${user.id}">
 						<img src='<c:out value="${user.fotoBase64Miniatura}"/>' alt="Imagem User" title="Imagem User" width="32px" height="32px"></a>
 						</td>
 						</c:if>
-						<c:if test="${user.fotoBase64Miniatura.isEmpty() == true || user.fotoBase64Miniatura == null}">
+						<c:if test="${user.fotoBase64Miniatura == null }">
 							<td data-title="Foto">
 							<img src="resources/img/userpadrao.png" width="32px" height="32px" onclick="alert('Não possui Imagem')" title="Sem Foto" alt="Sem Foto">
 						</td>
 						</c:if>
-						<c:if test="${user.curriculoBase64.isEmpty() == false }">
+						<c:if test="${user.curriculoBase64 != null }">
 						<td data-title="Currículo"> <a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}">
 							<img alt="Currículo" title="Currículo" src="resources/img/pdf.png" width="32px" height="32px"> </a>
 						</td>
 						</c:if>	
-						<c:if test="${user.curriculoBase64.isEmpty() == true }">
+						<c:if test="${user.curriculoBase64 == null }">
 						<td data-title="Curriculo"> 
 							<img title="Sem currículo" alt="Sem currículo" src="resources/img/nopdf.png" width="32px" height="32px" onclick="alert('Não possui PDF')"> 
 						</td>

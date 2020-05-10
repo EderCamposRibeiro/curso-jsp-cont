@@ -24,8 +24,27 @@ public class BeanCursoJsp {
 	private String contentTypeCurriculo;	
 	
 	private String tempFotoUser;
+	
+	private boolean atualizarImage = true;
+	private boolean atualizarPdf = true;
 
 	
+	public boolean isAtualizarImage() {
+		return atualizarImage;
+	}
+
+	public void setAtualizarImage(boolean atualizarImage) {
+		this.atualizarImage = atualizarImage;
+	}
+
+	public boolean isAtualizarPdf() {
+		return atualizarPdf;
+	}
+
+	public void setAtualizarPdf(boolean atualizarPdf) {
+		this.atualizarPdf = atualizarPdf;
+	}
+
 	public String getTempFotoUser() {
 		
 		tempFotoUser= "data:" + contentType + ";base64," + fotoBase64;

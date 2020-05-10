@@ -188,11 +188,24 @@ public class DaoUsuario {
 	 */
 	public void atualizar(BeanCursoJsp usuario) {
 		try {
-			String sql = "UPDATE usuario SET login = ?, senha = ?, nome = ?, telefone = ?, cep = ?,"
-					+ " rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ?, "
-					+ " fotobase64 = ?, contenttype = ?, curriculobase64 = ?,"
-					+ " contenttypecurriculo = ?, fotobase64miniatura = ? WHERE id = "+ usuario.getId() + "AND login <> 'admin'";
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			StringBuilder sql = new StringBuilder();
+			
+			
+			sql.append(" UPDATE usuario SET login = ?, senha = ?, nome = ?, telefone = ?, cep = ?, ");
+			sql.append(" rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ? ");
+			
+			if (usuario.isAtualizarImage()) {
+				sql.append(", fotobase64 = ?, contenttype = ? ");
+			}
+			if (usuario.isAtualizarPdf()) {
+				sql.append(", curriculobase64 = ?, contenttypecurriculo = ? ");
+			}
+			if (usuario.isAtualizarImage()) {
+				sql.append(" , fotobase64miniatura = ? ");
+			}
+			
+			sql.append(" WHERE id = "+ usuario.getId() + " AND login <> 'admin' ");
+			PreparedStatement preparedStatement = connection.prepareStatement(sql.toString());
 			preparedStatement.setString(1, usuario.getLogin());
 			preparedStatement.setString(2, usuario.getSenha());
 			preparedStatement.setString(3, usuario.getNome());
@@ -203,11 +216,22 @@ public class DaoUsuario {
 			preparedStatement.setString(8, usuario.getCidade());
 			preparedStatement.setString(9, usuario.getEstado());
 			preparedStatement.setString(10, usuario.getIbge());
-			preparedStatement.setString(11, usuario.getFotoBase64());
-			preparedStatement.setString(12, usuario.getContentType());
-			preparedStatement.setString(13, usuario.getCurriculoBase64());
-			preparedStatement.setString(14, usuario.getContentTypeCurriculo());
-			preparedStatement.setString(15, usuario.getFotoBase64Miniatura());
+			
+			if (usuario.isAtualizarImage() && usuario.isAtualizarPdf()) {
+				preparedStatement.setString(11, usuario.getFotoBase64());
+				preparedStatement.setString(12, usuario.getContentType());
+				preparedStatement.setString(13, usuario.getCurriculoBase64());
+				preparedStatement.setString(14, usuario.getContentTypeCurriculo());
+				preparedStatement.setString(15, usuario.getFotoBase64Miniatura());
+
+			} else if (usuario.isAtualizarImage() && !usuario.isAtualizarPdf()) {
+				preparedStatement.setString(11, usuario.getFotoBase64());
+				preparedStatement.setString(12, usuario.getContentType());
+				preparedStatement.setString(13, usuario.getFotoBase64Miniatura());
+			} else {
+				preparedStatement.setString(11, usuario.getCurriculoBase64());
+				preparedStatement.setString(12, usuario.getContentTypeCurriculo());				
+			}
 			preparedStatement.executeUpdate();
 			connection.commit();
 		} catch(Exception e) {
