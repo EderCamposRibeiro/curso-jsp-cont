@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>      
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Cadastro de produto</title>
 <link rel="stylesheet" href="resources/css/cadastro.css">
-  <script src="resources/javascript/jquery.min.js" type="text/javascript"></script>
-  <script src="resources/javascript/jquery.maskMoney.min.js" type="text/javascript"></script>
+<script src="resources/javascript/jquery.min.js" type="text/javascript"></script>
+<script src="resources/javascript/jquery.maskMoney.min.js"
+	type="text/javascript"></script>
 </head>
 <body>
 
-	<a href="acessoliberado.jsp"><img src="resources/img/home.png" width="35px" height="35px" title="Voltar" alt="Voltar"></a>
+	<a href="acessoliberado.jsp"><img src="resources/img/home.png"
+		width="35px" height="35px" title="Voltar" alt="Voltar"></a>
 	<br>
-	<a href="index.jsp"><img src="resources/img/icon.png" width="35px" height="35px" title="Sair" alt="Sair"></a>
+	<a href="index.jsp"><img src="resources/img/icon.png" width="35px"
+		height="35px" title="Sair" alt="Sair"></a>
 
 	<h1 align="center">Cadastro de produto</h1>
 
@@ -37,20 +40,24 @@
 					</tr>
 					<tr>
 						<td>Quantidade:</td>
-						<td><input type="number" id="quantidade" name="quantidade" maxlength="12"
-							value="${product.quantidade}" placeholder="Digite a quantidade"></td>
+						<td><input type="text" id="quantidade" name="quantidade"
+							maxlength="7" value="${product.quantidade}"
+							placeholder="Digite a quantidade"></td>
 					</tr>
 					<tr>
-					
+
 						<td>Valor R$:</td>
-						<td><input type="text"  id="valor" name="valor" maxlength="20" data-precisio="2" 
+						<td><input type="text" id="valor" name="valor" maxlength="12"
+							data-precisio="2"
 							title="Deve ser um número com até dois decimais."
-							value="${product.valorEmTexto}" placeholder="Valor do produto em Reais"></td>
-					</tr>		
+							value="${product.valorEmTexto}"
+							placeholder="Valor do produto em Reais"></td>
+					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar" style="width: 90px"> 
-						<input type="submit" value="Cancelar" onclick="document.getElementById('formProduct').action = 'salvarProduto?acao=reset'">
+						<td><input type="submit" value="Salvar" style="width: 90px">
+							<input type="submit" value="Cancelar"
+							onclick="document.getElementById('formProduct').action = 'salvarProduto?acao=reset'">
 						</td>
 					</tr>
 				</table>
@@ -58,12 +65,12 @@
 			</li>
 		</ul>
 	</form>
-	
+
 	<h3 align="center" style="color: red;">${msg}</h3>
 
 	<div class="container">
 		<table class="responsive-table">
-		<caption>Produtos cadastrados</caption>
+			<caption>Produtos cadastrados</caption>
 			<thead>
 				<tr>
 					<th scope="col">Id Produtos</th>
@@ -72,24 +79,29 @@
 					<th scope="col">Valor R$</th>
 					<th scope="col">Excluir</th>
 					<th scope="col">Editar</th>
-					
+
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${produtos}" var="product">
-				<tr>
-					<th scope="row"><c:out value="${product.id}"></c:out></th>
-					<td data-title="Nome"><c:out value="${product.nome}"></c:out></td>
-					<td data-title="Quantidade"><c:out value="${product.quantidade}"></c:out></td>
-					<td data-title="Valor"><fmt:formatNumber type="number" maxFractionDigits="2" value="${product.valor}"/></td>
-					<td data-title="Excluir"><a href="salvarProduto?acao=delete&product=${product.id}">
-						<img src="resources/img/icon.png" width="20px" height="20px" title="Excluir" alt="Excluir"> </a>
-					</td>
-					<td data-title="Editar"><a href="salvarProduto?acao=editar&product=${product.id}">
-						<img src="resources/img/editar.png" width="20px" height="20px" title="Editar" alt="Editar"></a>
-					</td>
-				</tr>
-			</c:forEach>
+				<c:forEach items="${produtos}" var="product">
+					<tr>
+						<th scope="row"><c:out value="${product.id}"></c:out></th>
+						<td data-title="Nome"><c:out value="${product.nome}"></c:out></td>
+						<td data-title="Quantidade"><c:out
+								value="${product.quantidade}"></c:out></td>
+						<td data-title="Valor"><fmt:formatNumber type="number"
+								maxFractionDigits="2" value="${product.valor}" /></td>
+						<td data-title="Excluir"><a
+							href="salvarProduto?acao=delete&product=${product.id}"> <img
+								src="resources/img/icon.png" width="20px" height="20px"
+								title="Excluir" alt="Excluir">
+						</a></td>
+						<td data-title="Editar"><a
+							href="salvarProduto?acao=editar&product=${product.id}"> <img
+								src="resources/img/editar.png" width="20px" height="20px"
+								title="Editar" alt="Editar"></a></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
@@ -109,10 +121,22 @@
 			}
 			return true;
 		}
-		
-		  $(function() {
-			  $("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
-			  })
+
+		$(function() {
+			$("#valor").maskMoney({
+				prefix : 'R$ ',
+				allowNegative : true,
+				thousands : '.',
+				decimal : ',',
+				affixesStay : false
+			});
+		})
+
+		$(document).ready(function() {
+			$("#quantidade").keyup(function() {
+				$("#quantidade").val(this.value.match(/[0-9]*/));
+			});
+		});
 	</script>
 </body>
 </html>

@@ -11,7 +11,8 @@
 </head>
 
 <body>
-	<a href="index.jsp">Sair</a>
+	
+	<a href="index.jsp"><img src="resources/img/icon.png" width="35px" height="35px" title="Sair" alt="Sair"></a>
 	<h1 align="center">Cadastro de telefones</h1>
 
 
