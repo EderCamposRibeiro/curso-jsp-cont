@@ -173,7 +173,7 @@
 								title="Telefones" alt="Telefones">
 						</a></td>						
 						<td data-title="Excluir"><a
-							href="salvarUsuario?acao=delete&user=${user.id}"> <img
+							href="salvarUsuario?acao=delete&user=${user.id}" onclick="return confirm('Confirmar a exclusão?')"> <img
 								src="resources/img/icon.png" width="20px" height="20px"
 								title="Excluir" alt="Excluir">
 						</a></td>

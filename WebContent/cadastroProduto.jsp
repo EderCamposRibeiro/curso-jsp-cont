@@ -92,7 +92,7 @@
 						<td data-title="Valor"><fmt:formatNumber type="number"
 								maxFractionDigits="2" value="${product.valor}" /></td>
 						<td data-title="Excluir"><a
-							href="salvarProduto?acao=delete&product=${product.id}"> <img
+							href="salvarProduto?acao=delete&product=${product.id}" onclick="return confirm('Confirmar a exclusão?')"> <img
 								src="resources/img/icon.png" width="20px" height="20px"
 								title="Excluir" alt="Excluir">
 						</a></td>

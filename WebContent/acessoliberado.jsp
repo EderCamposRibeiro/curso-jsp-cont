@@ -9,6 +9,7 @@
 </head>
 <body>
 	
+	<a href="index.jsp"><img src="resources/img/icon.png" width="35px" height="35px" title="Sair" alt="Sair"></a>
 	<div align="center" style="padding-top: 10%;" >	
 	<h3 >Seja bem vindo ao sistema em JSP!</h3>
 
