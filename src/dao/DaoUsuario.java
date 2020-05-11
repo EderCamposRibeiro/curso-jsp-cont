@@ -232,7 +232,7 @@ public class DaoUsuario {
 				preparedStatement.setString(12, usuario.getFotoBase64());
 				preparedStatement.setString(13, usuario.getContentType());
 				preparedStatement.setString(14, usuario.getFotoBase64Miniatura());
-			} else {
+			} else if (!usuario.isAtualizarImage() && usuario.isAtualizarPdf()){
 				preparedStatement.setString(12, usuario.getCurriculoBase64());
 				preparedStatement.setString(13, usuario.getContentTypeCurriculo());
 			}

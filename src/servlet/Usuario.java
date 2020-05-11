@@ -140,11 +140,6 @@ public class Usuario extends HttpServlet {
 				String estado = request.getParameter("estado");
 				String ibge = request.getParameter("ibge");
 				
-
-				
-				System.out.println(request.getParameter("ativo")); //on -> quando está marcado na checkbox
-				                                                   //null -> quando a checkbox não está marcada
-		
 				BeanCursoJsp usuario = new BeanCursoJsp();
 				usuario.setId((id != null && !id.isEmpty()) ? Long.parseLong(id) : null);
 				usuario.setLogin(login);

@@ -70,7 +70,19 @@
 					</tr>
 					<tr>
 						<td>Ativo:</td>
-						<td><input type="checkbox" id="ativo" name="ativo">
+						<td><input type="checkbox" id="ativo" name="ativo"
+						<%
+							if (request.getAttribute("user") != null) {
+								
+								beans.BeanCursoJsp user = (beans.BeanCursoJsp) request.getAttribute("user");
+								if (user.isAtivo()) {
+									out.print(" ");
+									out.print("checked=\"checked\"");
+									out.print(" ");
+								}
+							}
+						%>
+						>
 						</td>
 						<td>Foto:</td>
 						<td><input type="file" name="foto"/>
