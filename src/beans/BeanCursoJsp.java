@@ -21,7 +21,8 @@ public class BeanCursoJsp {
 	private String fotoBase64Miniatura;
 	private String contentType;
 	private String curriculoBase64;
-	private String contentTypeCurriculo;	
+	private String contentTypeCurriculo;
+	private boolean ativo;
 	
 	private String tempFotoUser;
 	
@@ -43,6 +44,14 @@ public class BeanCursoJsp {
 
 	public void setAtualizarPdf(boolean atualizarPdf) {
 		this.atualizarPdf = atualizarPdf;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public String getTempFotoUser() {

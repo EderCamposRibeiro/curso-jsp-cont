@@ -139,6 +139,11 @@ public class Usuario extends HttpServlet {
 				String cidade = request.getParameter("cidade");
 				String estado = request.getParameter("estado");
 				String ibge = request.getParameter("ibge");
+				
+
+				
+				System.out.println(request.getParameter("ativo")); //on -> quando está marcado na checkbox
+				                                                   //null -> quando a checkbox não está marcada
 		
 				BeanCursoJsp usuario = new BeanCursoJsp();
 				usuario.setId((id != null && !id.isEmpty()) ? Long.parseLong(id) : null);
@@ -152,6 +157,14 @@ public class Usuario extends HttpServlet {
 				usuario.setCidade(cidade);
 				usuario.setEstado(estado);
 				usuario.setIbge(ibge);
+				
+		
+				if (request.getParameter("ativo") != null  
+						&&  request.getParameter("ativo").equalsIgnoreCase("on")) {
+					usuario.setAtivo(true);
+				} else {
+					usuario.setAtivo(false);
+				}
 				
 				try {	
 					

@@ -34,8 +34,8 @@ public class DaoUsuario {
 		try {
 			String sql = "INSERT INTO usuario(login, senha, nome, telefone, cep,"
 					+ " rua, bairro, cidade, estado, ibge,"
-					+ " fotobase64, contenttype, curriculobase64, contenttypecurriculo, fotobase64miniatura ) "
-					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ " fotobase64, contenttype, curriculobase64, contenttypecurriculo, fotobase64miniatura, ativo ) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
@@ -52,6 +52,7 @@ public class DaoUsuario {
 			insert.setString(13, usuario.getCurriculoBase64());
 			insert.setString(14, usuario.getContentTypeCurriculo());
 			insert.setString(15, usuario.getFotoBase64Miniatura());
+			insert.setBoolean(16, usuario.isAtivo());
 			insert.execute();
 			connection.commit();
 		} catch(Exception e) {
@@ -91,6 +92,7 @@ public class DaoUsuario {
 				beanCursoJsp.setFotoBase64Miniatura(resultSet.getString("fotobase64miniatura"));
 				beanCursoJsp.setCurriculoBase64(resultSet.getString("curriculobase64"));
 				beanCursoJsp.setContentTypeCurriculo(resultSet.getString("contenttypecurriculo"));
+				beanCursoJsp.setAtivo(resultSet.getBoolean("ativo"));
 				listar.add(beanCursoJsp);
 			}
 			return listar;
@@ -146,6 +148,7 @@ public class DaoUsuario {
 				beanCursoJsp.setContentType(resultSet.getString("contenttype"));
 				beanCursoJsp.setCurriculoBase64(resultSet.getString("curriculobase64"));
 				beanCursoJsp.setContentTypeCurriculo(resultSet.getString("contenttypecurriculo"));
+				beanCursoJsp.setAtivo(resultSet.getBoolean("ativo"));
 				return beanCursoJsp;
 			}
 		return null; 
@@ -192,7 +195,7 @@ public class DaoUsuario {
 			
 			
 			sql.append(" UPDATE usuario SET login = ?, senha = ?, nome = ?, telefone = ?, cep = ?, ");
-			sql.append(" rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ? ");
+			sql.append(" rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ? , ativo = ?");
 			
 			if (usuario.isAtualizarImage()) {
 				sql.append(", fotobase64 = ?, contenttype = ? ");
@@ -216,22 +219,24 @@ public class DaoUsuario {
 			preparedStatement.setString(8, usuario.getCidade());
 			preparedStatement.setString(9, usuario.getEstado());
 			preparedStatement.setString(10, usuario.getIbge());
+			preparedStatement.setBoolean(11, usuario.isAtivo());
 			
 			if (usuario.isAtualizarImage() && usuario.isAtualizarPdf()) {
-				preparedStatement.setString(11, usuario.getFotoBase64());
-				preparedStatement.setString(12, usuario.getContentType());
-				preparedStatement.setString(13, usuario.getCurriculoBase64());
-				preparedStatement.setString(14, usuario.getContentTypeCurriculo());
-				preparedStatement.setString(15, usuario.getFotoBase64Miniatura());
+				preparedStatement.setString(12, usuario.getFotoBase64());
+				preparedStatement.setString(13, usuario.getContentType());
+				preparedStatement.setString(14, usuario.getCurriculoBase64());
+				preparedStatement.setString(15, usuario.getContentTypeCurriculo());
+				preparedStatement.setString(16, usuario.getFotoBase64Miniatura());
 
 			} else if (usuario.isAtualizarImage() && !usuario.isAtualizarPdf()) {
-				preparedStatement.setString(11, usuario.getFotoBase64());
-				preparedStatement.setString(12, usuario.getContentType());
-				preparedStatement.setString(13, usuario.getFotoBase64Miniatura());
+				preparedStatement.setString(12, usuario.getFotoBase64());
+				preparedStatement.setString(13, usuario.getContentType());
+				preparedStatement.setString(14, usuario.getFotoBase64Miniatura());
 			} else {
-				preparedStatement.setString(11, usuario.getCurriculoBase64());
-				preparedStatement.setString(12, usuario.getContentTypeCurriculo());				
+				preparedStatement.setString(12, usuario.getCurriculoBase64());
+				preparedStatement.setString(13, usuario.getContentTypeCurriculo());
 			}
+			
 			preparedStatement.executeUpdate();
 			connection.commit();
 		} catch(Exception e) {

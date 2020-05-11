@@ -69,8 +69,9 @@
 							value="${user.estado}" placeholder="Digite a UF"></td>
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
+						<td>Ativo:</td>
+						<td><input type="checkbox" id="ativo" name="ativo">
+						</td>
 						<td>Foto:</td>
 						<td><input type="file" name="foto"/>
 						</td>
