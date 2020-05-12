@@ -2,7 +2,7 @@ package beans;
 
 /*
  * Classe BeanCursoJsp
- * Classe Que Provê o Modelo de Objeto
+ * Classe Que Provï¿½ o Modelo de Objeto
  */
 public class BeanCursoJsp {
 	
@@ -23,6 +23,7 @@ public class BeanCursoJsp {
 	private String curriculoBase64;
 	private String contentTypeCurriculo;
 	private boolean ativo;
+	private String sexo;
 	
 	private String tempFotoUser;
 	
@@ -180,6 +181,18 @@ public class BeanCursoJsp {
 
 	public void setContentTypeCurriculo(String contentTypeCurriculo) {
 		this.contentTypeCurriculo = contentTypeCurriculo;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public void setTempFotoUser(String tempFotoUser) {
+		this.tempFotoUser = tempFotoUser;
 	}
 	
 	

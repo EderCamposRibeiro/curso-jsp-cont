@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.xml.bind.DatatypeConverter;
@@ -139,6 +139,7 @@ public class Usuario extends HttpServlet {
 				String cidade = request.getParameter("cidade");
 				String estado = request.getParameter("estado");
 				String ibge = request.getParameter("ibge");
+				String sexo = request.getParameter("sexo");
 				
 				BeanCursoJsp usuario = new BeanCursoJsp();
 				usuario.setId((id != null && !id.isEmpty()) ? Long.parseLong(id) : null);
@@ -152,6 +153,7 @@ public class Usuario extends HttpServlet {
 				usuario.setCidade(cidade);
 				usuario.setEstado(estado);
 				usuario.setIbge(ibge);
+				usuario.setSexo(sexo);
 				
 		
 				if (request.getParameter("ativo") != null  
@@ -239,10 +241,10 @@ public class Usuario extends HttpServlet {
 							msg = "Nome Deve Ser Informado!";
 							podeInserir = false;
 						} else if(id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
-							request.setAttribute("msg", "Este Login Pertence a Um Usuário!");
+							request.setAttribute("msg", "Este Login Pertence a Um Usuï¿½rio!");
 							podeInserir = false;
 						} else if(id == null || id.isEmpty() && !daoUsuario.validarSenha(senha)) {
-							request.setAttribute("msg", "Esta Senha Pertence a Um Usuário!");
+							request.setAttribute("msg", "Esta Senha Pertence a Um Usuï¿½rio!");
 							podeInserir = false;
 						}
 						

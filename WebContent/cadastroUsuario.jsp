@@ -1,3 +1,4 @@
+<%@page import="beans.BeanCursoJsp"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -90,8 +91,35 @@
 
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
+						<td>Sexo:</td>
+						<td>
+							<input type="radio" name="sexo"
+							<% 
+								if (request.getAttribute("user") != null) {
+									BeanCursoJsp user = (BeanCursoJsp) request.getAttribute("user");
+									if (user.getSexo().equalsIgnoreCase("masculino")){
+										out.print(" ");
+										out.print("checked=\"checked\"");
+										out.print(" ");
+									}
+									
+								}
+							%>
+							value="masculino">M</input>
+							<input type="radio" name="sexo" 
+							<% 
+								if (request.getAttribute("user") != null) {
+									BeanCursoJsp user = (BeanCursoJsp) request.getAttribute("user");
+									if (user.getSexo().equalsIgnoreCase("feminino")){
+										out.print(" ");
+										out.print("checked=\"checked\"");
+										out.print(" ");
+									}
+									
+								}
+							%>							
+							value="feminino">F</input>
+						</td>
 						<td>
 						   Curriculo:	
 						</td>
