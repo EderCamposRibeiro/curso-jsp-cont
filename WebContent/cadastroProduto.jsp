@@ -54,6 +54,19 @@
 							placeholder="Valor do produto em Reais"></td>
 					</tr>
 					<tr>
+
+						<td>Categoria:</td>
+						<td>
+							<select id="categorias" name="categoria_id" style="width: 185px">
+								<c:forEach items="${categorias}" var="cat">
+									<option value="${cat.id}" id="${cat.id}">
+										${cat.id} - ${cat.nome}
+									</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>					
+					<tr>
 						<td></td>
 						<td><input type="submit" value="Salvar" style="width: 90px">
 							<input type="submit" value="Cancelar"
