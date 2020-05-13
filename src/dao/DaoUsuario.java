@@ -34,8 +34,9 @@ public class DaoUsuario {
 		try {
 			String sql = "INSERT INTO usuario(login, senha, nome, telefone, cep,"
 					+ " rua, bairro, cidade, estado, ibge,"
-					+ " fotobase64, contenttype, curriculobase64, contenttypecurriculo, fotobase64miniatura, ativo, sexo ) "
-					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ " fotobase64, contenttype, curriculobase64, contenttypecurriculo,"
+					+ " fotobase64miniatura, ativo, sexo, perfil ) "
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
@@ -54,6 +55,7 @@ public class DaoUsuario {
 			insert.setString(15, usuario.getFotoBase64Miniatura());
 			insert.setBoolean(16, usuario.isAtivo());
 			insert.setString(17, usuario.getSexo());
+			insert.setString(18, usuario.getPerfil());
 			insert.execute();
 			connection.commit();
 		} catch(Exception e) {
@@ -95,6 +97,7 @@ public class DaoUsuario {
 				beanCursoJsp.setContentTypeCurriculo(resultSet.getString("contenttypecurriculo"));
 				beanCursoJsp.setAtivo(resultSet.getBoolean("ativo"));
 				beanCursoJsp.setSexo(resultSet.getString("sexo"));
+				beanCursoJsp.setPerfil(resultSet.getString("perfil"));
 				listar.add(beanCursoJsp);
 			}
 			return listar;
@@ -152,6 +155,7 @@ public class DaoUsuario {
 				beanCursoJsp.setContentTypeCurriculo(resultSet.getString("contenttypecurriculo"));
 				beanCursoJsp.setAtivo(resultSet.getBoolean("ativo"));
 				beanCursoJsp.setSexo(resultSet.getString("sexo"));
+				beanCursoJsp.setPerfil(resultSet.getString("perfil"));
 				return beanCursoJsp;
 			}
 		return null; 
@@ -198,7 +202,7 @@ public class DaoUsuario {
 			
 			
 			sql.append(" UPDATE usuario SET login = ?, senha = ?, nome = ?, telefone = ?, cep = ?, ");
-			sql.append(" rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ? , ativo = ? , sexo = ? ");
+			sql.append(" rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ? , ativo = ? , sexo = ?, perfil = ? ");
 			
 			if (usuario.isAtualizarImage()) {
 				sql.append(", fotobase64 = ?, contenttype = ? ");
@@ -224,21 +228,22 @@ public class DaoUsuario {
 			preparedStatement.setString(10, usuario.getIbge());
 			preparedStatement.setBoolean(11, usuario.isAtivo());
 			preparedStatement.setString(12, usuario.getSexo());
+			preparedStatement.setString(13, usuario.getPerfil());
 			
 			if (usuario.isAtualizarImage() && usuario.isAtualizarPdf()) {
-				preparedStatement.setString(13, usuario.getFotoBase64());
-				preparedStatement.setString(14, usuario.getContentType());
-				preparedStatement.setString(15, usuario.getCurriculoBase64());
-				preparedStatement.setString(16, usuario.getContentTypeCurriculo());
-				preparedStatement.setString(17, usuario.getFotoBase64Miniatura());
+				preparedStatement.setString(14, usuario.getFotoBase64());
+				preparedStatement.setString(15, usuario.getContentType());
+				preparedStatement.setString(16, usuario.getCurriculoBase64());
+				preparedStatement.setString(17, usuario.getContentTypeCurriculo());
+				preparedStatement.setString(18, usuario.getFotoBase64Miniatura());
 
 			} else if (usuario.isAtualizarImage() && !usuario.isAtualizarPdf()) {
-				preparedStatement.setString(13, usuario.getFotoBase64());
-				preparedStatement.setString(14, usuario.getContentType());
-				preparedStatement.setString(15, usuario.getFotoBase64Miniatura());
+				preparedStatement.setString(14, usuario.getFotoBase64());
+				preparedStatement.setString(15, usuario.getContentType());
+				preparedStatement.setString(16, usuario.getFotoBase64Miniatura());
 			} else if (!usuario.isAtualizarImage() && usuario.isAtualizarPdf()){
-				preparedStatement.setString(13, usuario.getCurriculoBase64());
-				preparedStatement.setString(14, usuario.getContentTypeCurriculo());
+				preparedStatement.setString(14, usuario.getCurriculoBase64());
+				preparedStatement.setString(15, usuario.getContentTypeCurriculo());
 			}
 			
 			preparedStatement.executeUpdate();
