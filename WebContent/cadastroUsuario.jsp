@@ -219,7 +219,20 @@
 	</form>
 
 	<h3 align="center" style="color: red;">${msg}</h3>
-
+	
+	<form method="post" action="servletPesquisa" style="width: 90%">
+	<ul class="form-style-1">
+		<li>
+			<table>
+				<tr>
+					<td>Descrição:<input type="text" id="descricaoconsulta" name="descricaoconsulta" style="width: 70%"></td>
+					<td><input type="submit" value="Pesquisar"></td>			
+			    </tr>
+			</table>
+		</li>
+	</ul>
+	</form>
+	
 	<div class="container">
 		<table class="responsive-table">
 			<caption>Usuários cadastrados</caption>

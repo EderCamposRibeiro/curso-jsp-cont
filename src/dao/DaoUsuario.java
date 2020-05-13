@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import beans.BeanCursoJsp;
 import connection.SingleConnection;
 
@@ -69,12 +70,25 @@ public class DaoUsuario {
 	}
 	
 	/*
-	 * Mï¿½todo listar()
-	 * Responsï¿½vel Por Listar Todos os Usuï¿½rios do Sistema
+	 * Método listar()
+	 * Responsável Por Listar Todos os Usuários do Sistema
 	 */
+	
+	public List<BeanCursoJsp> listar(String descricaoConsulta) throws SQLException {
+		String sql = "SELECT * FROM usuario WHERE login <> 'admin' and nome like '%"+ descricaoConsulta+"%' ";
+		return consultarUsuarios(sql);
+	}
+	
+	
+	
 	public List<BeanCursoJsp> listar() throws Exception {
-		List<BeanCursoJsp> listar = new ArrayList<BeanCursoJsp>();
+		
 		String sql = "SELECT * FROM usuario WHERE login <> 'admin'";
+		return consultarUsuarios(sql);	
+	}
+
+	private List<BeanCursoJsp> consultarUsuarios(String sql) throws SQLException {
+		List<BeanCursoJsp> listar = new ArrayList<BeanCursoJsp>();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()) {
@@ -100,7 +114,7 @@ public class DaoUsuario {
 				beanCursoJsp.setPerfil(resultSet.getString("perfil"));
 				listar.add(beanCursoJsp);
 			}
-			return listar;
+		return listar;	
 	}
 	
 	/*
