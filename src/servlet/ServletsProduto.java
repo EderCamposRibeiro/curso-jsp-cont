@@ -77,6 +77,7 @@ public class ServletsProduto extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String quantidade = request.getParameter("quantidade");
 			String valor = request.getParameter("valor");
+			String categoria_id = request.getParameter("categoria_id");
 
 			try {
 
@@ -118,6 +119,9 @@ public class ServletsProduto extends HttpServlet {
 					valorParse = valorParse.replaceAll("\\,", ".");//10500.00
 					produto.setValor(Double.parseDouble(valorParse));
 				}
+				
+				produto.setCategoria_id(!categoria_id.isEmpty() ? Long.parseLong(categoria_id) : null);
+				
 				if (msg != null) {
 					request.setAttribute("msg", msg);
 				} else if (id == null || id.isEmpty()

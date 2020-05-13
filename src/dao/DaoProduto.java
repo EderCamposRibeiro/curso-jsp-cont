@@ -36,11 +36,12 @@ public class DaoProduto {
 		 */
 		public void salvar(BeanProduto produto) {
 			try {
-				String sql = "INSERT INTO produto(nome, quantidade, valor) VALUES(?, ?, ?)";
+				String sql = "INSERT INTO produto(nome, quantidade, valor, categoria_id) VALUES(?, ?, ?, ?)";
 				PreparedStatement insert = connection.prepareStatement(sql);
 				insert.setString(1, produto.getNome());
 				insert.setDouble(2, produto.getQuantidade());
 				insert.setDouble(3, produto.getValor());
+				insert.setLong(4, produto.getCategoria_id());
 				insert.execute();
 				connection.commit();
 			} catch(Exception e) {
@@ -68,6 +69,7 @@ public class DaoProduto {
 					produto.setNome(resultSet.getString("nome"));
 					produto.setQuantidade(resultSet.getInt("quantidade"));
 					produto.setValor(resultSet.getDouble("valor"));
+					produto.setCategoria_id(resultSet.getLong("categoria_id"));
 					listar.add(produto);
 				}
 				return listar;
@@ -123,6 +125,7 @@ public class DaoProduto {
 					produto.setNome(resultSet.getString("nome"));
 					produto.setQuantidade(resultSet.getInt("quantidade"));
 					produto.setValor(resultSet.getDouble("valor"));
+					produto.setCategoria_id(resultSet.getLong("categoria_id"));
 					return produto;
 				}
 			return null;
@@ -150,11 +153,13 @@ public class DaoProduto {
 		 */
 		public void atualizar(BeanProduto produto) {
 			try {
-				String sql = "UPDATE produto SET nome = ?, quantidade = ?, valor = ? WHERE id = "+ produto.getId();
+				String sql = "UPDATE produto SET nome = ?, quantidade = ?"
+						   + ", valor = ?, categoria_id = ? WHERE id = "+ produto.getId();
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setString(1, produto.getNome());
 				preparedStatement.setDouble(2, produto.getQuantidade());
 				preparedStatement.setDouble(3, produto.getValor());
+				preparedStatement.setLong(4, produto.getCategoria_id());
 				preparedStatement.executeUpdate();
 				connection.commit();
 			} catch(Exception e) {
