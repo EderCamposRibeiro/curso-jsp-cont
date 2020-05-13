@@ -59,7 +59,7 @@ public class DaoProduto {
 		 * Responsável Por Listar Todos os Produtos do Sistema
 		 */
 		public List<BeanProduto> listar() throws Exception {
-			List<BeanProduto> listar = new ArrayList<BeanProduto>();
+			List<BeanProduto> produtos = new ArrayList<BeanProduto>();
 			String sql = "SELECT * FROM produto";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
@@ -70,13 +70,13 @@ public class DaoProduto {
 					produto.setQuantidade(resultSet.getInt("quantidade"));
 					produto.setValor(resultSet.getDouble("valor"));
 					produto.setCategoria_id(resultSet.getLong("categoria_id"));
-					listar.add(produto);
+					produtos.add(produto);
 				}
-				return listar;
+				return produtos;
 		}
 		
 		public List<BeanCategoria> listaCategorias() throws Exception{
-			List<BeanCategoria> listar = new ArrayList<BeanCategoria>();
+			List<BeanCategoria> categorias = new ArrayList<BeanCategoria>();
 			String sql = "SELECT * FROM categoria";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
@@ -84,9 +84,9 @@ public class DaoProduto {
 				BeanCategoria categoria = new BeanCategoria();
 				categoria.setId(resultSet.getLong("id"));
 				categoria.setNome(resultSet.getString("nome"));
-				listar.add(categoria);
+				categorias.add(categoria);
 			}
-			return listar;
+			return categorias;
 		}
 		
 		/*

@@ -58,8 +58,14 @@
 						<td>Categoria:</td>
 						<td>
 							<select id="categorias" name="categoria_id" style="width: 185px">
+									<option value="nao_informado">
+										Selecione
+									</option> 								
 								<c:forEach items="${categorias}" var="cat">
-									<option value="${cat.id}" id="${cat.id}">
+									<option value="${cat.id}" id="${cat.id}"
+										<c:if test="${cat.id == product.categoria_id}">
+											<c:out value="selected=selected" />										
+										</c:if>>
 										${cat.id} - ${cat.nome}
 									</option>
 								</c:forEach>
